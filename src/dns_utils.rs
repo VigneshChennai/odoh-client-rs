@@ -44,10 +44,10 @@ pub fn create_dns_query(domain: &str, query_type: &str) -> Result<Vec<u8>> {
 }
 
 /// Parses a DNS answer from bytes and prints it
-pub fn parse_dns_answer(msg: &[u8]) -> Result<()> {
+#[inline]
+pub fn parse_dns_answer(msg: &[u8]) -> Result<Message> {
     let result = Message::from_vec(msg)?;
-    println!("Response: {:?}", result.answers());
-    Ok(())
+    Ok(result)
 }
 
 /// Fetches `odohconfig` by querying the target server for HTTPS records.
